@@ -1,3 +1,4 @@
+from django.db.models import UniqueConstraint
 from django.db import models
 
 
@@ -14,27 +15,25 @@ class RollStatus(models.TextChoices):
 
 
 class Roll(models.Model):
-    number = models.CharField(max_length=50, unique=True)
-
-    set_number = models.PositiveIntegerField()
+    number = models.PositiveIntegerField()
     stand_number = models.PositiveIntegerField()
-    profile = models.PositiveIntegerField()
-
-    initial_diameter = models.DecimalField(max_digits=8, decimal_places=2)
+    profile = models.CharField(max_length=10)
     current_diameter = models.DecimalField(max_digits=8, decimal_places=2)
-
     current_status = models.CharField(
         max_length=30,
         choices=RollStatus.choices,
         default=RollStatus.CREATED
     )
     updated_at = models.DateTimeField(auto_now=True)
-
-    # Ответственный
     employee = models.TextField(
         blank=True,
-        verbose_name="Ответственный"
     )
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(fields=['number', 'stand_number'],
+                             name='unique_number_stand_number')
+        ]
 
     def __str__(self):
         return (

@@ -6,7 +6,6 @@ from .models import Roll
 class RollAdmin(admin.ModelAdmin):
     list_display = (
         "number",
-        "set_number",
         "stand_number",
         "profile",
         "current_diameter",
@@ -15,7 +14,6 @@ class RollAdmin(admin.ModelAdmin):
 
     search_fields = (
         "number",
-        "set_number",
         "profile",
     )
 
