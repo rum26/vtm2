@@ -108,6 +108,7 @@ class RollHistory(models.Model):
             f"{self.operation_date:%d.%m.%Y %H:%M}"
         )
 
+
     def save(self, *args, **kwargs):
         """
         После сохранения записи истории
