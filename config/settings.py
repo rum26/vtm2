@@ -80,3 +80,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Для CSRF (CSRF_TRUSTED_ORIGINS)
+CSRF_TRUSTED_ORIGINS = [
+    'https://rum26.ru',  # обязательно с https://
+]
